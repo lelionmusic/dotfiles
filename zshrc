@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/lelion/.oh-my-zsh
+export ZSH=/home/lelion/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -15,7 +15,7 @@ BULLETTRAIN_TIME_BG="white"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -55,7 +55,7 @@ HIST_STAMPS="dd/mm/yyyy"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
+source /usr/share/doc/pkgfile/command-not-found.zsh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -97,19 +97,24 @@ bindkey '^[[1;3A'	cdParentKey
 bindkey '^[[1;3D'	cdUndoKey
 
 
-# source /usr/share/doc/pkgfile/command-not-found.zsh
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias l='ls -l'
+alias l='ls -lt --group-directories-first'
 alias pac='sudo pacman -S '
-alias pmm='pamac-manager &'
-alias note='xfce4-notes &'
-alias stngs='xfce4-settings-manager &'
-alias brightness='sudo tee /sys/class/backlight/acpi_video0/brightness <<< '
-alias oblig='cd /home/lelion/Documents/INF1000/Obliger/'
-alias usortopg='cd /home/lelion/Documents/INF1000/usort-opg'
 alias zshconf="vim ~/dotfiles/zshrc"
 alias szsh='source ~/dotfiles/zshrc'
 alias vimrc='vim ~/dotfiles/vimrc'
+alias jc='javac *.java'
+alias colors='echo -e "\033[0mNC (No color)"
+echo -e "\033[1;37mWHITE\t\033[0;30mBLACK"
+echo -e "\033[0;34mBLUE\t\033[1;34mLIGHT_BLUE"
+echo -e "\033[0;32mGREEN\t\033[1;32mLIGHT_GREEN"
+echo -e "\033[0;36mCYAN\t\033[1;36mLIGHT_CYAN"
+echo -e "\033[0;31mRED\t\033[1;31mLIGHT_RED"
+echo -e "\033[0;35mPURPLE\t\033[1;35mLIGHT_PURPLE"
+echo -e "\033[0;33mYELLOW\t\033[1;33mLIGHT_YELLOW"
+echo -e "\033[1;30mGRAY\t\033[0;37mLIGHT_GRAY"'
+alias please='sudo'
+alias t='tree'
