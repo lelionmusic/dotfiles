@@ -118,3 +118,5 @@ echo -e "\033[0;33mYELLOW\t\033[1;33mLIGHT_YELLOW"
 echo -e "\033[1;30mGRAY\t\033[0;37mLIGHT_GRAY"'
 alias please='sudo'
 alias t='tree'
+
+zstyle ':completion:*' matcher-list 'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
