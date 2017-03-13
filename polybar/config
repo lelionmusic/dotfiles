@@ -15,7 +15,7 @@ background-alt = #444
 foreground = #fff
 foreground-alt = #777
 primary = #ffb52a
-secondary = #e60053
+secondary = #0B6BA7
 alert = #bd2c40
 
 [bar/example]
@@ -25,7 +25,7 @@ height = 20
 ;offset-x = 1%
 ;offset-y = 1%
 ;radius = 6.0
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -43,14 +43,15 @@ font-1 = San\ Francisco\ Text:fontformat=truetype:size=7:antialias=false;0
 ; glyphs
 font-2 = Wuncon\ Siji:size=10;1
 
-;modules-left = bspwm i3
-modules-center = mpd
-modules-right = volume memory wlan eth xkeyboard battery date powermenu tray
+modules-left = xworkspaces 
+modules-center = mpd date
+modules-right = cpu memory wlan eth xkeyboard volume battery powermenu 
 
-tray-position = right
-tray-padding = 0
+tray-position = 
+tray-padding = 1
 ;tray-transparent = true
-;tray-background = #0063ff
+tray-background = #FF000000
+tray-scale = 1
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -67,6 +68,31 @@ tray-padding = 0
 type = internal/xwindow
 label = %title:0:30:...%
 
+[module/xworkspaces]
+type = internal/xworkspaces
+
+icon-0 = Web;"  1.    " 
+icon-1 = Dolphin;"  2.    "
+icon-2 = Code;"  3.  "
+icon-3 = Prompt;"  4.    "
+icon-4 = INF1010;"  5. INF1010  "
+icon-5 = INF2810;"  6. INF2810  "
+
+;format = <label-active
+
+label-active =%icon%
+label-active-foreground = ${colors.foreground} 
+label-active-background = #900B6BA7
+
+label-occupied = %icon%!!!
+label-occupied-foreground = ${colors.foreground-alt} 
+
+
+label-urgent = %icon%!
+label-urgent-foreground = ${colors.foreground-alt} 
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt} 
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
@@ -183,7 +209,7 @@ card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
-interval = 2
+interval = 1
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
@@ -191,7 +217,7 @@ label = %percentage%%
 
 [module/memory]
 type = internal/memory
-interval = 2
+interval = 5
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
@@ -254,23 +280,19 @@ label = %time% %date%
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <bar-volume>
-label-volume-font = 3
-label-volume =
-label-volume-foreground = ${colors.foreground-alt}
+format-volume = <label-volume>
+format-volume-prefix = 
+format-volume-prefix-foreground = ${colors.foreground-alt}
+label-volume-font = 1 
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = muted
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = #0B6BA7
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
