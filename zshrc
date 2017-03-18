@@ -101,22 +101,25 @@ bindkey '^[[1;3D'	cdUndoKey
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias l='ls -lt --group-directories-first'
+alias l="ls -ht --group-directories-first -B --hide='*.class'"
+alias la="ls -hlta --group-directories-first"
+alias ll="ls -lht --group-directories-first -B --hide='*.class'"
 alias pac='sudo pacman -S '
 alias zshconf="vim ~/dotfiles/zshrc"
 alias szsh='source ~/dotfiles/zshrc'
 alias vimrc='vim ~/dotfiles/vimrc'
 alias jc='javac *.java'
-alias colors='echo -e "\033[0mNC (No color)"
-echo -e "\033[1;37mWHITE\t\033[0;30mBLACK"
-echo -e "\033[0;34mBLUE\t\033[1;34mLIGHT_BLUE"
-echo -e "\033[0;32mGREEN\t\033[1;32mLIGHT_GREEN"
-echo -e "\033[0;36mCYAN\t\033[1;36mLIGHT_CYAN"
-echo -e "\033[0;31mRED\t\033[1;31mLIGHT_RED"
-echo -e "\033[0;35mPURPLE\t\033[1;35mLIGHT_PURPLE"
-echo -e "\033[0;33mYELLOW\t\033[1;33mLIGHT_YELLOW"
-echo -e "\033[1;30mGRAY\t\033[0;37mLIGHT_GRAY"'
-alias please='sudo'
+alias aupdate='sudo pacnanny -Syu'
 alias t='tree'
+alias polyconf='vim ~/dotfiles/polybar/config'
+alias todo='vim ~/Documents/arch-todo-list'
 
+# Paths
+alias ~1010='~/Documents/INF1010'
+alias ~2810='~/Documents/INF2810'
+
+
+# Smart matching, i.e doc/1010/o4 = Documents/INF1010/Oblig4
 zstyle ':completion:*' matcher-list 'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
+# Run ls after every change of directory
+chpwd() { ls --hide='*.class' -B }

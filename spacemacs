@@ -242,11 +242,11 @@ values."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 95
+   dotspacemacs-active-transparency 80
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-inactive-transparency 90
+   dotspacemacs-inactive-transparency 80
    ;; If non nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
    ;; If non nil show the color guide hint for transient state keys. (default t)
@@ -312,13 +312,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
        (pretty-lambda-for-modes)
 
        (set-face-background 'linum 'unspecified)
-       ;; (fringe-mode no-fringes)
        (set-face-background 'custom-comment-tag 'unspecified)
        (set-face-background 'font-lock-comment-face 'unspecified)
-       (set-default-font "iosevka")
+       (set-default-font "iosevka term medium")
+       (spacemacs/toggle-transparency)
+
 
        ;; Remap shift-enter to insert new line
-
        (defun insert-empty-line ()
          (interactive)
          (evil-append-line 1)
