@@ -8,15 +8,16 @@
 ;=====================================================
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #a213151E
-;background = #a21b2029
+background = #cc120b0d
+;background = #00000000
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #fff
 foreground-alt = #50ffffff
 primary = #ffb52a
 ;blue
-secondary = #0B6BA7
+;secondary = #0B6BA7
+secondary = #a2C36E28
 alert = #bd2c40
 
 [bar/example]
@@ -34,7 +35,7 @@ foreground = ${colors.foreground}
 padding-left = 0
 padding-right = 2
 
-module-margin-left = 1
+module-margin-left = 2
 module-margin-right = 2
 
 ; main text
@@ -44,7 +45,7 @@ font-1 = San\ Francisco\ Text:fontformat=truetype:size=7:antialias=false;0
 ; glyphs
 font-2 = Wuncon\ Siji:size=10;1
 
-modules-left = xworkspaces 
+modules-left = i3 
 modules-center = mpd date 
 modules-right = cpu memory wlan eth xkeyboard volume battery 
 
@@ -55,15 +56,15 @@ tray-background = #a2102020
 tray-scale = 1
 
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
 
 ;override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 line-size = 2
 [module/xwindow]
 type = internal/xwindow
@@ -148,19 +149,18 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-padding = 4
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused = %index% 
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.secondary}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-foreground = ${colors.foreground-alt}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
@@ -264,6 +264,8 @@ interval = 5
 
 date-alt =
 date = " %a, %d/%m"
+
+format-background = ${colors.background}
 
 time = %H:%M
 time-alt = %H:%M

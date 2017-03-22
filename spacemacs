@@ -36,8 +36,9 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     helm
-     auto-completion
+     ;; helm
+     ivy
+     ;; auto-completion
      better-defaults
      emacs-lisp
      ;; git
@@ -143,11 +144,11 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("iosevka term"
-                               :size 13
+   dotspacemacs-default-font '("iosevka"
+                               :size 10.0
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -242,7 +243,7 @@ values."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 80
+   dotspacemacs-active-transparency 100
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -298,9 +299,20 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  ;; Font glitch workaround?
+  (defun reset-default-font ()
+    (unless (spacemacs/set-default-font dotspacemacs-default-font)
+      (spacemacs-buffer/warning
+       "Cannot find any of the specified fonts (%s)! Font settings may not be correct."
+       (mapconcat 'car dotspacemacs-default-font ", ")))
+    (remove-hook 'focus-in-hook #'reset-default-font))
+
+  (add-hook 'focus-in-hook #'reset-default-font)
   )
+
 (defun dotspacemacs/user-config () "Configuration function for user code. This function is called at the very end of Spacemacs initialization after layers configuration. This is the place where most of your configurations should be done. Unless it is explicitly specified that a variable should be set before a package is loaded,you should place your code here."
-       ;; R5RS Scheme Setup
+       ;; ;; R5RS Scheme Setup
        (setq geiser-active-implementations '(racket))
        (require 'auto-complete-config)
        (ac-config-default)
@@ -311,13 +323,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
        (add-to-list 'pretty-lambda-auto-modes 'geiser-repl-mode)
        (pretty-lambda-for-modes)
 
-       (set-face-background 'linum 'unspecified)
-       (set-face-background 'custom-comment-tag 'unspecified)
-       (set-face-background 'font-lock-comment-face 'unspecified)
-       (set-default-font "iosevka term medium")
-       (spacemacs/toggle-transparency)
-
-
        ;; Remap shift-enter to insert new line
        (defun insert-empty-line ()
          (interactive)
@@ -326,6 +331,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
          (evil-normal-state 1)
          )
        (global-set-key [(shift return)] 'insert-empty-line)
+
+       (spacemacs/toggle-vi-tilde-fringe-off)
+       (set-face-background 'linum 'unspecified)
+       (set-face-background 'custom-comment-tag 'unspecified)
+       (set-face-background 'font-lock-comment-face 'unspecified)
+       (spacemacs/toggle-transparency)
+
        )
 
 ;; Do not write anything past this comment. This is where Emacs will

@@ -39,23 +39,23 @@ set backspace=indent,eol,start
 let g:hardtime_default_on = 0
 let g:hardtime_maxcount = 4
 " onedark theme stuff
-if (empty($TMUX))
-	if (has("nvim"))
-		let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-	endif
-	if (has("termguicolors"))
-		set termguicolors
-	endif
-endif
+"if (empty($TMUX))
+"	if (has("nvim"))
+"		let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"	endif
+"	if (has("termguicolors"))
+"		set termguicolors
+"	endif
+"endif
 
-let g:onedark_termcolors=16
-let g:onedark_terminal_italics=1
+"let g:onedark_termcolors=16
+"let g:onedark_terminal_italics=1
 
  " " Switch syntax highlighting on
 syntax on
  "
-set background=dark
-colorscheme onedark
+"set background=dark
+"colorscheme onedark
 let g:airline_theme='luna' 
 let g:airline_powerline_fonts=1
  " " Show line numbers

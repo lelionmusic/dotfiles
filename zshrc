@@ -7,7 +7,7 @@ export ZSH=/home/lelion/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bullet-train"
+ZSH_THEME="spaceship"
 
 BULLETTRAIN_TIME_BG="white"
 # Uncomment the following line to use case-sensitive completion.
@@ -114,6 +114,8 @@ alias t='tree'
 alias polyconf='vim ~/dotfiles/polybar/config'
 alias todo='vim ~/Documents/arch-todo-list'
 
+alias pbar='~/dotfiles/polybar/launch.sh'
+
 # Paths
 alias ~1010='~/Documents/INF1010'
 alias ~2810='~/Documents/INF2810'
@@ -122,4 +124,4 @@ alias ~2810='~/Documents/INF2810'
 # Smart matching, i.e doc/1010/o4 = Documents/INF1010/Oblig4
 zstyle ':completion:*' matcher-list 'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 # Run ls after every change of directory
-chpwd() { ls --hide='*.class' -B }
+chpwd() { ls --hide='*.class' -B --group-directories-first }
