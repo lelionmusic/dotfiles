@@ -1,42 +1,42 @@
 [colors]
 
 # special
-foreground      = #8fa388
-foreground_bold = #8fa388
-cursor          = #8fa388
-background      = #13151e
+foreground      = #ffffff
+foreground_bold = #ffffff
+cursor          = #ffffff
+background      = #14181d
 
 # black
-color0  = #39474a
-color8  = #4c5f63
+color0  = #2c3235
+color8  = #465056
 
 # red
-color1  = #986345
-color9  = #b07350
+color1  = #75af91
+color9  = #33684d
 
 # green
-color2  = #788249
-color10 = #869151
+color2  = #72906c
+color10 = #629059
 
 # yellow
-color3  = #9b6a46
-color11 = #af6b42
+color3  = #3c5974
+color11 = #1e4466
 
 # blue
-color4  = #3e5951
-color12 = #567a6e
+color4  = #4f7586
+color12 = #316b86
 
 # magenta
-color5  = #b9924a
-color13 = #d69d55
+color5  = #80637a
+color13 = #805276
 
 # cyan
-color6  = #5d796a
-color14 = #668574
+color6  = #60867f
+color14 = #49867b
 
 # white
-color7  = #977d5e
-color15 = #ab9c71
+color7  = #48534a
+color15 = #cbe0cf
 
 [options]
 font = iosevka term medium 10
