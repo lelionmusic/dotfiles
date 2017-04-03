@@ -1,9 +1,6 @@
 # Make caps lock an extra ctrl
 setxkbmap -option ctrl:nocaps
+
 # Both shift to activate capslock, one shift to cancel
 setxkbmap -option shift:both_capslock_cancel
 # setxkbmap -option grp:alt_shift_toggle us,no
-
-#compton &
-#~/dotfiles/polybar/launch.sh
-

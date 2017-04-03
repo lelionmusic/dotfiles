@@ -116,6 +116,8 @@ alias todo='vim ~/Documents/arch-todo-list'
 
 alias pbar='~/dotfiles/polybar/launch.sh'
 
+alias startxfce4='..'
+
 # Paths
 alias ~1010='~/Documents/INF1010'
 alias ~2810='~/Documents/INF2810'
