@@ -8,8 +8,8 @@
 ;=====================================================
 [colors]
 background = #000a0b0b
-;background = #ccaaaaaa
-background-alt = #444
+; background = #ffffff55
+background-alt = #eeeeee55
 foreground = #fff
 foreground-alt = #50ffffff
 secondary = ${xrdb:color4:#222}
@@ -20,7 +20,7 @@ width = 100%
 height = 22
 fixed-center = true
 background = ${colors.background}
-foreground = ${colors.foreground}
+; foreground = ${colors.foreground}
 
 padding-left = 0
 padding-right = 2
@@ -35,9 +35,9 @@ font-1 = San\ Francisco\ Text:fontformat=truetype:size=7:antialias=false;0
 ; glyphs
 font-2 = Wuncon\ Siji:size=10;1
 
-modules-left = i3 mpd 
+modules-left = i3 xwindow mpd 
 modules-center = date 
-modules-right = cpu memory network wlan eth xkeyboard volume battery 
+modules-right = cpu memory network xkeyboard volume battery 
 
 tray-position = right 
 tray-padding = 1
@@ -118,7 +118,7 @@ label-mode-padding = 4
 
 ; focused = Active workspace on focused monitor
 label-focused = %index% 
-label-focused-background = ${colors.background} 
+label-focused-background =
 label-focused-underline = ${colors.secondary}
 label-focused-padding = 2 
 
@@ -126,6 +126,7 @@ label-focused-padding = 2
 label-unfocused = %index%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 label-unfocused-foreground = ${colors.foreground-alt}
+; label-unfocused-underline = ${colors.secondary}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
@@ -165,40 +166,39 @@ format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %percentage_used%%
 
-[module/wlan]
-type = internal/network
-interface = wlp3s0
-interval = 3.0
+; [module/wlan]
+; type = internal/network
+; interface = wlp3s0
+; interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
-label-connected = WiFi %upspeed%↑ %downspeed%↓
+; format-connected = <ramp-signal> <label-connected>
+; label-connected = WiFi %upspeed%↑ %downspeed%↓
 
-format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
+; format-disconnected = <label-disconnected> ${self.format-connected-underline}
+; label-disconnected = %ifname% disconnected
+; label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+; ramp-signal-0 = 
+; ramp-signal-1 = 
+; ramp-signal-2 = 
+; ramp-signal-3 = 
+; ramp-signal-4 = 
+; ramp-signal-foreground = ${colors.foreground-alt}
 
-[module/eth]
-type = internal/network
-interface = net0
-interval = 3.0
+; [module/eth]
+; type = internal/network
+; interface = net0
+; interval = 3.0
 
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+; format-connected-prefix = " "
+; format-connected-prefix-foreground = ${colors.foreground-alt}
+; label-connected = %local_ip%
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+; format-disconnected =
+; ;format-disconnected = <label-disconnected>
+; ;format-disconnected-underline = ${self.format-connected-underline}
+; ;label-disconnected = %ifname% disconnected
+; ;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
