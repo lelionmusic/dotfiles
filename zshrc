@@ -52,7 +52,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages sudo)
+plugins=(git sudo)
 
 source $ZSH/oh-my-zsh.sh
 source /usr/share/doc/pkgfile/command-not-found.zsh
@@ -113,17 +113,27 @@ alias aupdate='sudo pacnanny -Syu'
 alias t='tree'
 alias polyconf='vim ~/dotfiles/polybar/config'
 alias todo='vim ~/Documents/arch-todo-list'
+alias checkports='sudo nmap -sT -O localhost'
 
 alias pbar='~/dotfiles/polybar/launch.sh'
 
-alias startxfce4='..'
-
 # Paths
-alias ~1010='~/Documents/INF1010'
-alias ~2810='~/Documents/INF2810'
+alias 1010='~/Documents/INF1010'
+alias 2810='~/Documents/INF2810'
+alias 2100='~/Documents/h17/inf2100'
+alias 1060='cd ~/Documents/h17/inf1060'
 
 
 # Smart matching, i.e doc/1010/o4 = Documents/INF1010/Oblig4
 zstyle ':completion:*' matcher-list 'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 # Run ls after every change of directory
 chpwd() { ls --hide='*.class' -B --group-directories-first }
+
+# Colored man pages
+export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode - red
+export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode - bold, magenta
+export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
+export LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode
+export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode - yellow
+export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
+export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan

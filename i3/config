@@ -86,7 +86,7 @@ bindsym $win+f exec ~/dotfiles/scripts/rofi.sh
 # firefox
 bindsym $win+w exec firefox
 # file explorer
-bindsym $win+e exec nemo --no-desktop &
+bindsym $win+e exec nemo & #--no-desktop
 # emacs
 bindsym $win+a exec emacsclient -c -a ""
 
@@ -253,7 +253,13 @@ exec --no-startup-id compton &
 exec_always --no-startup-id ~/dotfiles/polybar/launch.sh &
 exec --no-startup-id xfsettingsd --sm-client-disable &
 exec --no-startup-id xfce4-power-manager --sm-client-disable &
-exec --no-startup-id xfce4-volumed --sm-client-disable &
+exec --no-startup-id xfce4-volumed-pulse --sm-client-disable &
+
+# Volume controls
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
 
 # Wallpaper
 exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpapers/active/floweronrock.png
