@@ -34,19 +34,19 @@ values."
      asm
      python
      helm
-     (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t)
      emacs-lisp
      git
-     semantic
-     (c-c++ :variables c-c++-enable-clang-support t)
      org
+     semantic
+     syntax-checking
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
+     (c-c++ :variables
+            c-c++-enable-clang-support t)
      (shell :variables
             shell-default-term-shell "/bin/zsh"
             shell-default-height 40
-            shell-default-full-span nil
-            )
-     syntax-checking
+            shell-default-full-span nil)
      )
 
    ;; List of additional packages that will be installed without being
@@ -66,6 +66,7 @@ values."
                                     org-projectile
                                     auto-complete
                                     evil-search-highlight-persist
+                                    vi-tilde-fringe
                                     )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -300,6 +301,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (custom-set-variables '(spacemacs-theme-comment-bg nil)
+                        '(spacemacs-theme-custom-colors '((comment . "#666666"))))
   )
 
 (defun dotspacemacs/user-config ()
@@ -309,26 +312,27 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; ;; R5RS Scheme Setup
-  ;; (setq geiser-active-implementations '(racket))
-  ;; (require 'auto-complete-config)
-  ;; (ac-config-default)
-  ;; (require 'ac-geiser)
-  ;; (add-hook 'geiser-mode-hook 'ac-geiser-setup)
-  ;; (add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
-  ;; (eval-after-load "auto-complete" '(add-to-list 'ac-modes 'geiser-repl-mode))
-  ;; (add-to-list 'pretty-lambda-auto-modes 'geiser-repl-mode)
-  ;; (pretty-lambda-for-modes)
 
-  ;; ** FUNCTIONS AND HOTKEYS
-  ;; Remap shift-enter to insert new line
+  ;; Dont edit these
+  (custom-set-faces
+   '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+   '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+
+
+  ;; FUNCTIONS AND HOTKEYS
   (defun insert-empty-line-below ()
+    "Insert new line below."
     (interactive)
-    (evil-append-line 1)
-    (open-line 1)
-    (evil-normal-state 1)
-    )
-  (global-set-key [(shift return)] 'insert-empty-line-below)
+    (evil-open-below 1)
+    (evil-normal-state)
+    (evil-previous-line))
+  (defun insert-empty-line-above (&optional count)
+    "Insert new line above."
+    (unless count (setq count 1))
+    (interactive)
+    (evil-open-above count)
+    (evil-normal-state)
+    (evil-next-line count))
 
   (defun delete-file-and-buffer ()
     "Kill the current buffer and deletes the file it is visiting."
@@ -356,9 +360,6 @@ you should place your code here."
   (global-set-key (kbd "C-c s") 'surround)
 
   ;; AESTHETICS
-  ;; this is not working
-  (setq-default vi-tilde-fringe-mode nil)
-  (setq-default global-vi-tilde-fringe-mode nil)
 
   (setq-default c-default-style "java")
 
@@ -370,50 +371,3 @@ you should place your code here."
   (add-to-list 'auto-mode-alist '("\\.s\\'" . asm-mode))
   )
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(custom-safe-themes
-   (quote
-    ("a2e7b508533d46b701ad3b055e7c708323fb110b6676a8be458a758dd8f24e27" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "6c35ffc17f8288be4c7866deb7437e8af33cd09930e195738cdfef911ab77274" default)))
- '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#202325" t)
- '(package-selected-packages
-   (quote
-    (x86-lookup nasm-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional helm-pydoc cython-mode company-anaconda anaconda-mode pythonic fuzzy sql-indent geiser org-category-capture disaster company-c-headers cmake-mode clang-format yasnippet ac-ispell web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode nord-theme smeargle pretty-lambdada paredit orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor company-statistics company auto-yasnippet ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build flatland-theme)))
- '(standard-indent 4)
- '(vc-annotate-background "#1f2124")
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#ff0000")
-     (40 . "#ff4a52")
-     (60 . "#f6aa11")
-     (80 . "#f1e94b")
-     (100 . "#f5f080")
-     (120 . "#f6f080")
-     (140 . "#41a83e")
-     (160 . "#40b83e")
-     (180 . "#b6d877")
-     (200 . "#b7d877")
-     (220 . "#b8d977")
-     (240 . "#b9d977")
-     (260 . "#93e0e3")
-     (280 . "#72aaca")
-     (300 . "#8996a8")
-     (320 . "#afc4db")
-     (340 . "#cfe2f2")
-     (360 . "#dc8cc3"))))
- '(vc-annotate-very-old-color "#dc8cc3"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
