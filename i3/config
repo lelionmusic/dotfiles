@@ -88,7 +88,7 @@ bindsym $win+w exec firefox
 # file explorer
 bindsym $win+e exec nemo & #--no-desktop
 # emacs
-bindsym $win+a exec emacsclient -c -a ""
+bindsym $win+a exec em
 
 # border on, see where focus is
 bindsym $mod+i exec i3-msg border pixel 1
@@ -256,9 +256,9 @@ exec --no-startup-id xfce4-power-manager --sm-client-disable &
 exec --no-startup-id xfce4-volumed-pulse --sm-client-disable &
 
 # Volume controls
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 
 # Wallpaper

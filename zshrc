@@ -97,26 +97,6 @@ bindkey '^[[1;3A'	cdParentKey
 bindkey '^[[1;3D'	cdUndoKey
 
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-alias l="ls -ht --group-directories-first -B --hide='*.class'"
-alias la="ls -hlta --group-directories-first"
-alias ll="ls -lht --group-directories-first -B --hide='*.class'"
-alias pac='sudo pacman -S '
-alias zshconf="vim ~/dotfiles/zshrc"
-alias szsh='source ~/dotfiles/zshrc'
-alias vimrc='vim ~/dotfiles/vimrc'
-alias jc='javac *.java'
-alias aupdate='sudo pacnanny -Syu'
-alias t='tree'
-alias polyconf='vim ~/dotfiles/polybar/config'
-alias todo='vim ~/Documents/arch-todo-list'
-alias checkports='sudo nmap -sT -O localhost'
-
-alias pbar='~/dotfiles/polybar/launch.sh'
-
 # Paths
 alias 1010='~/Documents/INF1010'
 alias 2810='~/Documents/INF2810'
@@ -137,3 +117,25 @@ export LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode
 export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode - yellow
 export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+alias l="ls -ht --group-directories-first -B --hide='*.class'"
+alias la="ls -hlta --group-directories-first"
+alias ll="ls -lht --group-directories-first -B --hide='*.class'"
+alias pac='sudo pacman -S '
+alias zshconf="vim ~/dotfiles/zshrc"
+alias szsh='source ~/dotfiles/zshrc'
+alias vimrc='vim ~/dotfiles/vimrc'
+alias jc='javac *.java'
+alias aupdate='sudo pacnanny -Syu'
+alias t='tree'
+alias polyconf='vim ~/dotfiles/polybar/config'
+alias todo='vim ~/Documents/arch-todo-list'
+alias checkports='sudo nmap -sT -O localhost'
+alias pbar='~/dotfiles/polybar/launch.sh'
+alias p=python
+alias sxp="source ~/dotfiles/xprofile"
+alias ~3190='cd ~/Documents/v18/inf3190/'
