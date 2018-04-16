@@ -30,44 +30,40 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
-     asm
-     python
+   '(vinegar
+     evil-snipe
      helm
-     emacs-lisp
      git
      org
      semantic
      syntax-checking
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t)
+     emacs-lisp
+     asm
+     python
      (c-c++ :variables
             c-c++-enable-clang-support t)
      (shell :variables
             shell-default-term-shell "/bin/zsh"
             shell-default-height 40
-            shell-default-full-span nil)
-     )
+            shell-default-full-span nil))
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(
-                                      highlight-operators
-                                      )
+   dotspacemacs-additional-packages '(highlight-operators
+                                      yasnippet-snippets)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(
-                                    evil-unimpaired
+   dotspacemacs-excluded-packages '(evil-unimpaired
                                     evil-escape
                                     org-projectile
                                     auto-complete
-                                    evil-search-highlight-persist
-                                    vi-tilde-fringe
-                                    )
+                                    vi-tilde-fringe)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -145,9 +141,9 @@ values."
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka Term"
                                :size 14
-                               :weight normal
+                               :weight semi-bold
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.15)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -274,7 +270,7 @@ values."
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
-   dotspacemacs-highlight-delimiters 'all
+   dotspacemacs-highlight-delimiters 'current
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
@@ -303,6 +299,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (custom-set-variables '(spacemacs-theme-comment-bg nil)
                         '(spacemacs-theme-custom-colors '((comment . "#666666"))))
+
+  (custom-set-faces
+   '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+   '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
   )
 
 (defun dotspacemacs/user-config ()
@@ -313,26 +313,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  ;; Dont edit these
-  (custom-set-faces
-   '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
-   '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-
-
+ 
   ;; FUNCTIONS AND HOTKEYS
-  (defun insert-empty-line-below ()
-    "Insert new line below."
-    (interactive)
-    (evil-open-below 1)
-    (evil-normal-state)
-    (evil-previous-line))
-  (defun insert-empty-line-above (&optional count)
-    "Insert new line above."
-    (unless count (setq count 1))
-    (interactive)
-    (evil-open-above count)
-    (evil-normal-state)
-    (evil-next-line count))
 
   (defun delete-file-and-buffer ()
     "Kill the current buffer and deletes the file it is visiting."
@@ -347,27 +329,53 @@ you should place your code here."
             (kill-buffer))))))
   (global-set-key (kbd "C-c D") 'delete-file-and-buffer)
 
-  (defun surround (begin end open close)
-    "Put OPEN at START and CLOSE at END of the region. If you omit CLOSE,it will reuse OPEN."
-    (interactive  "r\nsStart: \nsEnd: ")
-    (when (string= close "")
-      (setq close open))
-    (save-excursion
-      (goto-char end)
-      (insert close)
-      (goto-char begin)
-      (insert open)))
-  (global-set-key (kbd "C-c s") 'surround)
+ 
+  ;; KEYBINDS
 
-  ;; AESTHETICS
+  (global-set-key [S-return] 'spacemacs/evil-insert-line-below)
+  (global-set-key [C-return] 'spacemacs/evil-insert-line-above)
+
+ 
+  ;; MISC
 
   (setq-default c-default-style "java")
+  (setq-default global-semantic-stickyfunc-mode nil)
+  (setq-default semantic-stickyfunc-mode nil)
+  (spacemacs/toggle-semantic-stickyfunc-globally-off)
 
+  (setq powerline-default-separator 'slant)
+
+  (setq-default major-mode 'org-mode)
+
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+
+
+ 
   ;; ** ASSEMBLER
   ;; Set asm-mode comment char to #
   (setq asm-comment-char ?\#)
 
   ;; Open .s files in asm-mode major mode
-  (add-to-list 'auto-mode-alist '("\\.s\\'" . asm-mode))
-  )
+  (add-to-list 'auto-mode-alist '("\\.s\\'" . asm-mode)))
 
+ 
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+ '(package-selected-packages
+   (quote
+    (evil-snipe evil-search-highlight-persist yasnippet-snippets yapfify xterm-color x86-lookup ws-butler winum which-key volatile-highlights uuidgen use-package toc-org srefactor spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree nasm-mode multi-term move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-operators highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diminish define-word cython-mode company-statistics company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+ '(spacemacs-theme-comment-bg nil)
+ '(spacemacs-theme-custom-colors (quote ((comment . "#666666")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))

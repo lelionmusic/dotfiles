@@ -64,11 +64,11 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='em'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -139,3 +139,4 @@ alias pbar='~/dotfiles/polybar/launch.sh'
 alias p=python
 alias sxp="source ~/dotfiles/xprofile"
 alias ~3190='cd ~/Documents/v18/inf3190/'
+alias weather='curl wttr.in '
