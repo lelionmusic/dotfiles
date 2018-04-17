@@ -28,14 +28,20 @@ values."
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
-   ;; List of configuration layers to load.
+;; List of configuration laye rs to load.
    dotspacemacs-configuration-layers
-   '(vinegar
+   '(
+     colors
+     theming
+     vinegar
      evil-snipe
      helm
      git
-     org
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl
+                      version-control-global-margin t)
      semantic
+     org
      syntax-checking
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t)
@@ -53,13 +59,18 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(highlight-operators
+   dotspacemacs-additional-packages '(
+                                      nlinum-mode
+                                      helm-flycheck
+                                      writeroom-mode
+                                      highlight-operators
                                       yasnippet-snippets)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(evil-unimpaired
+   dotspacemacs-excluded-packages '(
+                                    evil-unimpaired
                                     evil-escape
                                     org-projectile
                                     auto-complete
@@ -96,7 +107,7 @@ values."
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update t
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'.
@@ -174,7 +185,7 @@ values."
    dotspacemacs-retain-visual-state-on-shift t
    ;; If non-nil, J and K move lines up and down when in visual mode.
    ;; (default nil)
-   dotspacemacs-visual-line-move-text nil
+   dotspacemacs-visual-line-move-text t
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
    dotspacemacs-ex-substitute-global t
@@ -234,7 +245,7 @@ values."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -303,7 +314,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (custom-set-faces
    '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
    '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-  )
+
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+  (setq-default
+   linum-format "%3d  "
+   line-spacing 3
+   right-fringe-width 0
+   left-fringe-width 0))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -313,69 +331,142 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
- 
-  ;; FUNCTIONS AND HOTKEYS
-
-  (defun delete-file-and-buffer ()
-    "Kill the current buffer and deletes the file it is visiting."
-    (interactive)
-    (let ((filename (buffer-file-name)))
-      (when filename
-        (if (vc-backend filename)
-            (vc-delete-file filename)
-          (progn
-            (delete-file filename)
-            (message "Deleted file %s" filename)
-            (kill-buffer))))))
-  (global-set-key (kbd "C-c D") 'delete-file-and-buffer)
-
- 
   ;; KEYBINDS
-
   (global-set-key [S-return] 'spacemacs/evil-insert-line-below)
   (global-set-key [C-return] 'spacemacs/evil-insert-line-above)
 
- 
-  ;; MISC
+  ;; (setq-default semantic-stickyfunc-mode nil)
+  ;; (global-semantic-stickyfunc-mode -1)
+  ;; (spacemacs/toggle-semantic-stickyfunc-globally)
+  ;; (setq semantic-default-submodes (remove 'global-semantic-stickyfunc-mode semantic-default-submodes))
 
-  (setq-default c-default-style "java")
-  (setq-default global-semantic-stickyfunc-mode nil)
-  (setq-default semantic-stickyfunc-mode nil)
-  (spacemacs/toggle-semantic-stickyfunc-globally-off)
+  ;; (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
+  ;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
+  ;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
 
-  (setq powerline-default-separator 'slant)
+  (setq
+   ;; Editor
+   frame-resize-pixelwise t
+   fill-column 100
+   tab-width 4
+   mouse-wheel-progressive-speed nil
+   mouse-wheel-scroll-amount '(0.02)
+   scroll-margin 4
+   ;; smooth-scroll-margin 4
+   frame-background-mode 'dark
 
-  (setq-default major-mode 'org-mode)
+   eldoc-echo-area-use-multiline-p 'always
+   vc-follow-symlinks t
+   diff-hl-side 'left
 
-  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-  (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+   major-mode 'org-mode
+   c-default-style "java"
+   asm-comment-char ?\#
 
-
- 
-  ;; ** ASSEMBLER
-  ;; Set asm-mode comment char to #
-  (setq asm-comment-char ?\#)
+   theming-modifications
+   '((spacemacs-dark (helm-source-header :foreground "#dddddd"
+                                         :background nil)
+                     (helm-selection :background "#323437"
+                                     (:foreground) "#ffffff")
+                     (vertical-border :foreground "#323437")
+                     (hl-line :background "#323437")
+                     (linum :background nil
+                            :foreground "#494b4e")
+                     (powerline-active1  :foreground nil
+                                         :background "#323437")
+                     (powerline-inactive1  :foreground nil)
+                     (powerline-active2  :background nil)
+                     (powerline-inactive2  :background nil)
+                     (mode-line  :background nil
+                                 :box nil
+                                 )
+                     (mode-line-inactive  :background nil
+                                          :box nil
+                                          )
+                     (spaceline-highlight-face :background nil)
+                     (header-line :background nil)
+                     ))
+   )
 
   ;; Open .s files in asm-mode major mode
-  (add-to-list 'auto-mode-alist '("\\.s\\'" . asm-mode)))
+  (add-to-list 'auto-mode-alist '("\\.s\\'" . asm-mode))
 
- 
+  (spaceline-toggle-buffer-encoding-abbrev-off)
+  (spaceline-toggle-buffer-size-off)
+  (spaceline-toggle-version-control-off)
+  (spaceline-toggle-minor-modes-off)
+  (spaceline-toggle-hud-off)
+  (spacemacs/toggle-mode-line-battery-on)
+  (spacemacs/toggle-display-time-on)
+
+
+  )
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#2b303b" "#bf616a" "#a3be8c" "#ebcb8b" "#8fa1b3" "#b48ead" "#8fa1b3" "#c0c5ce"])
+ '(ansi-term-color-vector
+   [unspecified "#2b303b" "#bf616a" "#a3be8c" "#ebcb8b" "#8fa1b3" "#b48ead" "#8fa1b3" "#c0c5ce"])
+ '(custom-safe-themes
+   (quote
+    ("6dd2b995238b4943431af56c5c9c0c825258c2de87b6c936ee88d6bb1e577cb9" "2013588406c58ad3ddda9038e3005884d18a4d806f8af54295e8d777e555ef6c" "2e7422f9d0aff0886811dfb777263b94ebed4e13f250a1b5424c0b6cffe4ed7a" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "8a592c23536424312a0117927e1e13a50d70ce983d6a6cecfb4cc55a8c395df5" default)))
  '(evil-want-Y-yank-to-eol nil)
+ '(fci-rule-color "#4A4A4A" t)
+ '(global-diff-hl-mode t)
+ '(nrepl-message-colors
+   (quote
+    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (evil-snipe evil-search-highlight-persist yasnippet-snippets yapfify xterm-color x86-lookup ws-butler winum which-key volatile-highlights uuidgen use-package toc-org srefactor spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree nasm-mode multi-term move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-operators highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diminish define-word cython-mode company-statistics company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (rainbow-mode rainbow-identifiers color-identifiers-mode atom-one-dark-theme git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl writeroom-mode visual-fill-column helm-flycheck packed vi-tilde-fringe evil-escape yasnippet-snippets yapfify xterm-color x86-lookup ws-butler winum which-key volatile-highlights uuidgen use-package toc-org stickyfunc-enhance srefactor spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree nasm-mode multi-term move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-operators highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diminish define-word cython-mode company-statistics company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(spacemacs-theme-comment-bg nil)
- '(spacemacs-theme-custom-colors (quote ((comment . "#666666")))))
+ '(spacemacs-theme-custom-colors (quote ((comment . "#666666"))))
+ '(vc-annotate-background "#5B5B5B")
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(helm-source-header ((t (:foreground "#dddddd" :background nil))))
+ '(hl-line ((t (:background "#555555"))))
+ '(mode-line ((t (:background nil :box nil))))
+ '(mode-line-buffer-id-inactive ((t (:foreground "#dddddd"))))
+ '(mode-line-inactive ((t (:background nil :box nil))))
+ '(powerline-active1 ((t (:foreground nil))))
+ '(powerline-active2 ((t (:background nil))))
+ '(powerline-inactive1 ((t (:foreground nil))))
+ '(powerline-inactive2 ((t (:background nil)))))
+;; (custom-theme-set-faces 'spacemacs-dark
+;;                         ;; '(mode-line ((t (:foreground nil :background nil))))
+;;                         '(powerline-active2 ((t (:background nil))))
+;;                         '(powerline-inactive2 ((t (:background nil))))
+;;                         '(highlight ((t (:fourground nil))))
+;;                         ;; '(spaceline-highlight-face-func )
+;;                         )
