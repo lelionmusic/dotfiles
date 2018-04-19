@@ -372,17 +372,15 @@ you should place your code here."
                      (hl-line :background "#323437")
                      (linum :background nil
                             :foreground "#494b4e")
-                     (powerline-active1  :foreground nil
-                                         :background "#323437")
-                     (powerline-inactive1  :foreground nil)
+                     (powerline-active1  :background "#323437")
                      (powerline-active2  :background nil)
+                     (mode-line          :background nil
+                                         :box nil)
+                     (mode-line-inactive :background nil
+                                         :box nil)
+                     (powerline-inactive1  :foreground nil)
                      (powerline-inactive2  :background nil)
-                     (mode-line  :background nil
-                                 :box nil
-                                 )
-                     (mode-line-inactive  :background nil
-                                          :box nil
-                                          )
+
                      (spaceline-highlight-face :background nil)
                      (header-line :background nil)
                      ))
@@ -410,7 +408,7 @@ you should place your code here."
  '(ansi-color-names-vector
    ["#2b303b" "#bf616a" "#a3be8c" "#ebcb8b" "#8fa1b3" "#b48ead" "#8fa1b3" "#c0c5ce"])
  '(ansi-term-color-vector
-   [unspecified "#2b303b" "#bf616a" "#a3be8c" "#ebcb8b" "#8fa1b3" "#b48ead" "#8fa1b3" "#c0c5ce"])
+   [unspecified "#2b303b" "#bf616a" "#a3be8c" "#ebcb8b" "#8fa1b3" "#b48ead" "#8fa1b3" "#c0c5ce"] t)
  '(custom-safe-themes
    (quote
     ("6dd2b995238b4943431af56c5c9c0c825258c2de87b6c936ee88d6bb1e577cb9" "2013588406c58ad3ddda9038e3005884d18a4d806f8af54295e8d777e555ef6c" "2e7422f9d0aff0886811dfb777263b94ebed4e13f250a1b5424c0b6cffe4ed7a" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "8a592c23536424312a0117927e1e13a50d70ce983d6a6cecfb4cc55a8c395df5" default)))
@@ -422,7 +420,7 @@ you should place your code here."
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (rainbow-mode rainbow-identifiers color-identifiers-mode atom-one-dark-theme git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl writeroom-mode visual-fill-column helm-flycheck packed vi-tilde-fringe evil-escape yasnippet-snippets yapfify xterm-color x86-lookup ws-butler winum which-key volatile-highlights uuidgen use-package toc-org stickyfunc-enhance srefactor spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree nasm-mode multi-term move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-operators highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diminish define-word cython-mode company-statistics company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (company flycheck helm helm-core avy org-plus-contrib magit git-commit ghub with-editor dash rainbow-mode rainbow-identifiers color-identifiers-mode atom-one-dark-theme git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl writeroom-mode visual-fill-column helm-flycheck packed vi-tilde-fringe evil-escape yasnippet-snippets yapfify xterm-color x86-lookup ws-butler winum which-key volatile-highlights uuidgen use-package toc-org stickyfunc-enhance srefactor spaceline smeargle shell-pop restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree nasm-mode multi-term move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-operators highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diminish define-word cython-mode company-statistics company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(spacemacs-theme-comment-bg nil)
  '(spacemacs-theme-custom-colors (quote ((comment . "#666666"))))
  '(vc-annotate-background "#5B5B5B")
@@ -453,16 +451,16 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(helm-source-header ((t (:foreground "#dddddd" :background nil))))
- '(hl-line ((t (:background "#555555"))))
- '(mode-line ((t (:background nil :box nil))))
- '(mode-line-buffer-id-inactive ((t (:foreground "#dddddd"))))
- '(mode-line-inactive ((t (:background nil :box nil))))
- '(powerline-active1 ((t (:foreground nil))))
- '(powerline-active2 ((t (:background nil))))
- '(powerline-inactive1 ((t (:foreground nil))))
- '(powerline-inactive2 ((t (:background nil)))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ ;; '(helm-source-header ((t (:foreground "#dddddd" :background nil))))
+ ;; '(hl-line ((t (:background "#555555"))))
+ ;; '(mode-line ((t (:background nil :box nil))))
+ ;; '(mode-line-buffer-id-inactive ((t (:foreground "#dddddd"))))
+ ;; '(mode-line-inactive ((t (:background nil :box nil))))
+ ;; '(powerline-active1 ((t (:foreground nil))))
+ ;; '(powerline-active2 ((t (:background nil))))
+ ;; '(powerline-inactive1 ((t (:foreground nil))))
+ ;; '(powerline-inactive2 ((t (:background nil)))))
 ;; (custom-theme-set-faces 'spacemacs-dark
 ;;                         ;; '(mode-line ((t (:foreground nil :background nil))))
 ;;                         '(powerline-active2 ((t (:background nil))))
