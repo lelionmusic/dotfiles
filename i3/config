@@ -1,5 +1,5 @@
 # Gaps
-set $ing    16
+set $ing  10
 set $oug 	0
 
 set $mod Mod1
@@ -16,9 +16,9 @@ set_from_resource $blue        	color12 #000000
 set_from_resource $darkmagenta 	color5  #000000
 set_from_resource $magenta     	color13 #000000
 set_from_resource $darkcyan    	color6  #000000
-set_from_resource $cyan			color14 #000000
-set_from_resource $darkwhite	color7  #000000
-set_from_resource $white		color15	#000000
+set_from_resource $cyan			    color14 #000000
+set_from_resource $darkwhite	  color7  #000000
+set_from_resource $white		    color15	#000000
 
 # Window Border Thickness
 set $bordersize 0
