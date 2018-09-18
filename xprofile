@@ -3,10 +3,14 @@
 
 # No need caps
 # Both shift to activate capslock, one shift to cancel
-# setxkbmap -option shift:both_capslock_cancel
+setxkbmap -option shift:both_capslock_cancel
 
 setxkbmap -option 'caps:ctrl_modifier'
 xcape -e 'Caps_Lock=Escape'
 
 # I'm currently handling this with xfce-settings daemon
 # setxkbmap -option grp:alt_shift_toggle us,no
+
+export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus

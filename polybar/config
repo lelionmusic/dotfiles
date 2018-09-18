@@ -29,7 +29,9 @@ module-margin-left = 4
 module-margin-right = 0
 
 ; main text
-font-0 = San\ Francisco\ Text:pixelsize=9;1
+; font-0 = San\ Francisco\ Text:pixelsize=9;1
+; font-0  = 源ノ角ゴシック \JP:pixelsize=9;1
+font-0 = Source\ Han\ Sans\ JP:pixelsize=9;1
 ; volume bar
 font-1 = San\ Francisco\ Text:fontformat=truetype:size=7:antialias=false;0
 ; glyphs
@@ -37,7 +39,7 @@ font-2 = Wuncon\ Siji:size=10;1
 
 modules-left = i3 xwindow mpd 
 modules-center = date 
-modules-right = cpu memory network xkeyboard volume battery 
+modules-right = cpu memory network volume battery 
 
 tray-position = right 
 tray-padding = 1

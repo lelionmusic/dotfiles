@@ -31,6 +31,7 @@ values."
 ;; List of configuration laye rs to load.
    dotspacemacs-configuration-layers
    '(
+     html
      colors
      theming
      vinegar
@@ -150,7 +151,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Iosevka Term"
+   dotspacemacs-default-font '("Sarasa Term J"
                                :size 14
                                :weight semi-bold
                                :width normal
@@ -405,15 +406,32 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (vi-tilde-fringe evil-escape yasnippet-snippets yapfify xterm-color x86-lookup ws-butler writeroom-mode winum which-key volatile-highlights uuidgen use-package toc-org stickyfunc-enhance srefactor spaceline smeargle shell-pop restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree nasm-mode multi-term move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-operators highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flycheck helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diminish diff-hl define-word cython-mode company-statistics company-c-headers company-anaconda column-enforce-mode color-identifiers-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data visual-fill-column powerline alert log4e gntp org-plus-contrib hydra dash-functional parent-mode projectile request gitignore-mode fringe-helper git-gutter+ git-gutter pos-tip flycheck pkg-info epl flx magit magit-popup git-commit ghub with-editor smartparens iedit anzu evil goto-chg highlight company bind-map bind-key yasnippet vi-tilde-fringe evil-escape yasnippet-snippets yapfify xterm-color x86-lookup ws-butler writeroom-mode winum which-key volatile-highlights uuidgen use-package toc-org stickyfunc-enhance srefactor spaceline smeargle shell-pop restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox orgit org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree nasm-mode multi-term move-text magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-operators highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flycheck helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ fuzzy flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diminish diff-hl define-word cython-mode company-statistics company-c-headers company-anaconda column-enforce-mode color-identifiers-mode cmake-mode clean-aindent-mode clang-format auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+ '(spacemacs-theme-comment-bg nil)
+ '(spacemacs-theme-custom-colors (quote ((comment . "#666666")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(header-line ((t (:background nil))))
+ '(helm-selection ((t (:background "#323437" (:foreground) "#ffffff"))))
+ '(helm-source-header ((t (:foreground "#dddddd" :background nil))))
+ '(hl-line ((t (:background "#323437"))))
+ '(linum ((t (:background nil :foreground "#494b4e"))))
+ '(mode-line ((t (:background nil :box nil))))
+ '(mode-line-inactive ((t (:background nil :box nil))))
+ '(powerline-active1 ((t (:background "#323437"))))
+ '(powerline-active2 ((t (:background nil))))
+ '(powerline-inactive1 ((t (:foreground nil))))
+ '(powerline-inactive2 ((t (:background nil))))
+ '(spaceline-highlight-face ((t (:background nil))))
+ '(vertical-border ((t (:foreground "#323437")))))
  ;; '(helm-source-header ((t (:foreground "#dddddd" :background nil))))
  ;; '(hl-line ((t (:background "#555555"))))
  ;; '(mode-line ((t (:background nil :box nil))))

@@ -1,5 +1,5 @@
 # Gaps
-set $ing  10
+set $ing  8
 set $oug 	0
 
 set $mod Mod1
@@ -27,13 +27,13 @@ set $background #000000ff
 # Bar Warning Colour
 set $warning    #e84f4f
 # Active Window Colour
-set $border    	#ffffff11
+set $border    	#ffffff30
 # Bar Text Colour
 set $bartext    #eeeeee
 # Active Workspace Color
 set $barfoc     #456056
 # Unfocused Window/Workspace Colour
-set $ufocus     #00000022
+set $ufocus     #000000
 # Window Decoraction Text Colour
 set $dectext #ffffff
 # Unfocused window text color
@@ -250,6 +250,7 @@ bindsym $mod+g mode "Gaps"
 ###################################
 
 exec --no-startup-id compton &
+exec_always --no-startup-id ibus-daemon -xdr &
 exec_always --no-startup-id ~/dotfiles/polybar/launch.sh &
 exec --no-startup-id xfsettingsd --sm-client-disable &
 exec --no-startup-id xfce4-power-manager --sm-client-disable &
