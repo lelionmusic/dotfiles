@@ -17,10 +17,10 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto)           ; as-you-type code completion
-       ;; (helm             ; the *other* search engine for love and life
-       ;;  +fuzzy)          ; enable fuzzy search backend for helm
+      ; (helm             ; the *other* search engine for love and life
+      ;  +fuzzy)          ; enable fuzzy search backend for helm
       ;ido               ; the other *other* search engine...
-      (ivy              ; a search engine for love and life
+       (ivy              ; a search engine for love and life
       +fuzzy)          ; enable fuzzy search backend for ivy
 
        :ui
@@ -34,16 +34,16 @@
        hl-todo           ; highlight TODO/FIXME/NOTE tags
       ;modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
-      ;; neotree           ; a project drawer, like NERDTree for vim
-       treemacs          ; a project drawer, like neotree but cooler
+       neotree           ; a project drawer, like NERDTree for vim
+      ;treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
-      ;pretty-code       ; replace bits of code with pretty symbols
+      pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
       ;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
-       vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+      ;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
 
        :editor
@@ -56,7 +56,7 @@
        dired             ; making dired pretty [functional]
        ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
-       eshell            ; a consistent, cross-platform shell (WIP)
+      ;eshell            ; a consistent, cross-platform shell (WIP)
        hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
       ;term              ; terminals in Emacs
@@ -65,7 +65,7 @@
        :tools
       ;ansible
       ;docker
-       editorconfig      ; let someone else argue about tabs vs spaces
+      ;editorconfig      ; let someone else argue about tabs vs spaces
       ;ein               ; tame Jupyter notebooks with emacs
       ;gist              ; interacting with github gists
       ;macos             ; MacOS-specific commands

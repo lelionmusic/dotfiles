@@ -2,17 +2,25 @@
 
 (setq doom-font (font-spec :family "Iosevka Term" :size 14))
 
-;; Keybindings
-  
-;; (global-set-key [s-return] 'spacemacs/evil-insert-line-below)
-;;     (global-set-key [C-return] 'spacemacs/evil-insert-line-above)
 
 ;; Ivy regexp builder splitting by spaces
 (setq ivy-re-builders-alist '((t . ivy--regex-plus)))
-;; Other choices: ivy--regex-ignore-order
+;; Other c  hoices: ivy--regex-ignore-order
 ;;                ivy--regex-fuzzy
 
-(map! :n "C-h" #'evil-window-left
-      :n "C-j" #'evil-window-down
-      :n "C-k" #'evil-window-up
-      :n "C-l" #'evil-window-right)
+;; Keybindings
+(map! :en "C-h" #'evil-window-left
+      :en "C-j" #'evil-window-down
+      :en "C-k" #'evil-window-up
+      :en "C-l" #'evil-window-right
+
+      (:after ivy
+        :map ivy-minibuffer-map
+        "C-h" #'ivy-backward-kill-word
+        "RET" #'ivy-alt-done)
+      )
+
+;; Evil-surround
+
+;; TODO (global-set-key [s-return] 'spacemacs/evil-insert-line-below)
+;;      (global-set-key [C-return] 'spacemacs/evil-insert-line-above)
