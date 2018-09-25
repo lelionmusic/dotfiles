@@ -1,8 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH=/home/lelion/.oh-my-zsh
+export ZSH="/home/lelion/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -55,7 +54,6 @@ HIST_STAMPS="dd/mm/yyyy"
 plugins=(git sudo)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/doc/pkgfile/command-not-found.zsh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -67,7 +65,7 @@ source /usr/share/doc/pkgfile/command-not-found.zsh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='em'
+  export EDITOR='emacs'
 fi
 
 # Compilation flags
@@ -95,13 +93,6 @@ zle -N			cdParentKey
 zle -N			cdUndoKey
 bindkey '^[[1;3A'	cdParentKey
 bindkey '^[[1;3D'	cdUndoKey
-
-
-# Paths
-alias 1010='~/Documents/INF1010'
-alias 2810='~/Documents/INF2810'
-alias 2100='~/Documents/h17/inf2100'
-alias 1060='cd ~/Documents/h17/inf1060'
 
 
 # Smart matching, i.e doc/1010/o4 = Documents/INF1010/Oblig4
@@ -140,3 +131,11 @@ alias p=python
 alias sxp="source ~/dotfiles/xprofile"
 alias ~3190='cd ~/Documents/v18/inf3190/'
 alias weather='curl wttr.in '
+
+
+source "/home/lelion/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+fpath=($fpath "/home/lelion/.zfunctions")
+
+  # Set Spaceship ZSH as a prompt
+  autoload -U promptinit; promptinit
+  prompt spaceship
