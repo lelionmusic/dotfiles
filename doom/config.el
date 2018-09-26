@@ -1,9 +1,13 @@
 ;;; private/default/config.el -*- lexical-binding: t; -*-
 
+;; Font
 (setq doom-font (font-spec :family "Iosevka Term"
                            :slant 'italic'
                            :weight 'bold'
                            :size 14))
+
+;; Theme
+(setq doom-theme 'doom-nord)
 
 ;; Tab and go: make it behave more like YCM
 (company-tng-configure-default)
