@@ -123,8 +123,6 @@ alias vimrc='vim ~/dotfiles/vimrc'
 alias jc='javac *.java'
 alias aupdate='sudo pacnanny -Syu'
 alias t='tree'
-alias polyconf='vim ~/dotfiles/polybar/config'
-alias todo='vim ~/Documents/arch-todo-list'
 alias checkports='sudo nmap -sT -O localhost'
 alias pbar='~/dotfiles/polybar/launch.sh'
 alias p=python
@@ -134,8 +132,10 @@ alias weather='curl wttr.in '
 
 fpath=($fpath "/home/lelion/.zfunctions")
 
-# WSL X Server
-export DISPLAY=:0.0
+if [[ -z ${NAME+x} ]]; then
+    # WSL X Server
+    export DISPLAY=:0.0
 
-# Don't set nice on background processes (gives error on WSL)
-unsetopt BG_NICE
+    # Don't set nice on background processes (gives error on WSL)
+    unsetopt BG_NICE
+fi
