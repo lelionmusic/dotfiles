@@ -1,11 +1,19 @@
 ;;; private/default/config.el -*- lexical-binding: t; -*-
 
-(setq doom-font (font-spec :family "Iosevka Term" :size 14))
+(setq doom-font (font-spec :family "Iosevka Term"
+                           :slant 'italic'
+                           :weight 'bold'
+                           :size 14))
 
+;; Tab and go: make it behave more like YCM
+(company-tng-configure-default)
+
+;; o and O from a commented line will not continue comments
+(setq +evil-want-o/O-to-continue-comments nil)
 
 ;; Ivy regexp builder splitting by spaces
 (setq ivy-re-builders-alist '((t . ivy--regex-plus)))
-;; Other c  hoices: ivy--regex-ignore-order
+;; Other choices: ivy--regex-ignore-order
 ;;                ivy--regex-fuzzy
 
 ;; Keybindings

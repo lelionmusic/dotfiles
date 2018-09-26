@@ -96,7 +96,7 @@ bindkey '^[[1;3D'	cdUndoKey
 
 
 # Smart matching, i.e doc/1010/o4 = Documents/INF1010/Oblig4
-zstyle ':completion:*' matcher-list 'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
+# zstyle ':completion:*' matcher-list 'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
 # Run ls after every change of directory
 chpwd() { ls --hide='*.class' -B --group-directories-first }
 
@@ -136,6 +136,8 @@ alias weather='curl wttr.in '
 source "/home/lelion/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 fpath=($fpath "/home/lelion/.zfunctions")
 
-  # Set Spaceship ZSH as a prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
+# WSL X Server
+export DISPLAY=:0.0
+
+# Don't set nice on background processes (gives error on WSL)
+unsetopt BG_NICE
