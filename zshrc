@@ -132,8 +132,6 @@ alias sxp="source ~/dotfiles/xprofile"
 alias ~3190='cd ~/Documents/v18/inf3190/'
 alias weather='curl wttr.in '
 
-
-source "/home/lelion/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 fpath=($fpath "/home/lelion/.zfunctions")
 
 # WSL X Server

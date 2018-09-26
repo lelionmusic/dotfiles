@@ -1,8 +1,9 @@
 # Gaps
 set $ing  8
-set $oug 	0
+set $oug  0
 
 set $mod Mod1
+# set $mod Mod4
 set $win Mod4
 
 set_from_resource $darkred     	color1  #000000
@@ -16,9 +17,9 @@ set_from_resource $blue        	color12 #000000
 set_from_resource $darkmagenta 	color5  #000000
 set_from_resource $magenta     	color13 #000000
 set_from_resource $darkcyan    	color6  #000000
-set_from_resource $cyan			    color14 #000000
-set_from_resource $darkwhite	  color7  #000000
-set_from_resource $white		    color15	#000000
+set_from_resource $cyan			color14 #000000
+set_from_resource $darkwhite	color7  #000000
+set_from_resource $white		color15	#000000
 
 # Window Border Thickness
 set $bordersize 0
@@ -44,21 +45,13 @@ set $unfocdectext #666666
 # font pango:monospace 8
 font pango:San Francisco Display 8
 
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
+# bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
-bindsym $mod+minus scratchpad show
+# bindsym $mod+minus scratchpad show
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -66,61 +59,8 @@ bindsym $mod+Shift+q kill
 # alt f4? idk
 bindsym $mod+F4 exec xdotool getwindowfocus windowkill
 
-# lock screen
-bindsym $win+L exec dm-tool lock
-
 # arch blur i3lock
 bindsym ctrl+$mod+L exec ~/dotfiles/scripts/screenlock.sh
-
-#######################
-#				      
-#	Launching hotkeys #
-#					  
-#######################
-
-# terminal
-bindsym $win+x exec xfce4-terminal 
-bindsym $win+Shift+x exec xfce4-terminal -T "floating"
-# rofi 
-bindsym $win+f exec ~/dotfiles/scripts/rofi.sh
-# firefox
-bindsym $win+w exec firefox
-# file explorer
-bindsym $win+e exec nemo & #--no-desktop
-# emacs
-bindsym $win+a exec em
-
-# border on, see where focus is
-bindsym $mod+i exec i3-msg border pixel 1
-bindsym --release $mod+i exec i3-msg border pixel $bordersize
-
-# change focus
-# bindsym $mod+h focus left
-# bindsym $mod+j focus down
-# bindsym $mod+k focus up
-# bindsym $mod+l focus right
-bindsym $mod+h exec i3-msg border pixel 1; focus left
-bindsym $mod+j exec i3-msg border pixel 1; focus down
-bindsym $mod+k exec i3-msg border pixel 1; focus up
-bindsym $mod+l exec i3-msg border pixel 1; focus right
-bindsym --release $mod+h exec i3-msg border pixel $bordersize
-bindsym --release $mod+j exec i3-msg border pixel $bordersize
-bindsym --release $mod+k exec i3-msg border pixel $bordersize
-bindsym --release $mod+l exec i3-msg border pixel $bordersize
-
-# move focused window
-# bindsym $mod+Shift+h move left
-# bindsym $mod+Shift+j move down
-# bindsym $mod+Shift+k move up
-# bindsym $mod+Shift+l move right
-bindsym $mod+Shift+h exec i3-msg border pixel 1; move left
-bindsym $mod+Shift+j exec i3-msg border pixel 1; move down
-bindsym $mod+Shift+k exec i3-msg border pixel 1; move up
-bindsym $mod+Shift+l exec i3-msg border pixel 1; move right
-bindsym --release $mod+Shift+h exec i3-msg border pixel $bordersize
-bindsym --release $mod+Shift+j exec i3-msg border pixel $bordersize
-bindsym --release $mod+Shift+k exec i3-msg border pixel $bordersize
-bindsym --release $mod+Shift+l exec i3-msg border pixel $bordersize
 
 # split in horizontal orientation
 bindsym $mod+d split h
@@ -171,12 +111,29 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# border on, see where focus is
+bindsym $win+i exec i3-msg border pixel 1
+bindsym --release $win+i exec i3-msg border pixel $bordersize
+
+# change focus
+bindsym $mod+h exec i3-msg border pixel 1; focus left
+bindsym $mod+j exec i3-msg border pixel 1; focus down
+bindsym $mod+k exec i3-msg border pixel 1; focus up
+bindsym $mod+l exec i3-msg border pixel 1; focus right
+bindsym --release $mod+h exec i3-msg border pixel $bordersize
+bindsym --release $mod+j exec i3-msg border pixel $bordersize
+bindsym --release $mod+k exec i3-msg border pixel $bordersize
+bindsym --release $mod+l exec i3-msg border pixel $bordersize
+
+# move focused window
+bindsym $mod+Shift+h exec i3-msg border pixel 1; move left
+bindsym $mod+Shift+j exec i3-msg border pixel 1; move down
+bindsym $mod+Shift+k exec i3-msg border pixel 1; move up
+bindsym $mod+Shift+l exec i3-msg border pixel 1; move right
+bindsym --release $mod+Shift+h exec i3-msg border pixel $bordersize
+bindsym --release $mod+Shift+j exec i3-msg border pixel $bordersize
+bindsym --release $mod+Shift+k exec i3-msg border pixel $bordersize
+bindsym --release $mod+Shift+l exec i3-msg border pixel $bordersize
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -204,10 +161,35 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+#######################
+#				      
+#	Launching hotkeys #
+#					  
+#######################
+
+# terminal
+bindsym $win+x exec xfce4-terminal
+bindsym $mod+enter exec xfce4-terminal
+# rofi
+bindsym $win+f exec ~/dotfiles/scripts/rofi.sh
+# firefox
+bindsym $win+w exec firefox
+# file explorer
+bindsym $win+e exec nemo & #--no-desktop
+# emacs
+bindsym $win+a exec em
+
 ######################
-#			 		           #
+#                    #
 #     Aesthetics     #
-#         					 # 
+#  					 #
 ######################
 
 # Border style
@@ -218,7 +200,7 @@ hide_edge_borders smart
 gaps inner $ing
 gaps outer $oug 
 # No gaps on workspaces with only one window
-# smart_gaps on
+smart_gaps on
 workspace 1 gaps inner 0 
 
 # class                 border   backgr.  text           indicator
