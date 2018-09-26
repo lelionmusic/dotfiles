@@ -3,13 +3,13 @@
 ;; Font
 (setq doom-font (font-spec :family "Iosevka Term"
                            :slant 'italic'
-                           :weight 'bold'
+                           ;; :weight 'bold'
                            :size 14))
 
 ;; Theme
-(setq doom-theme 'doom-nord)
+;; (setq doom-theme 'doom-nord)
 
-;; Tab and go: make it behave more like YCM
+;; Tab and go: make it behave more like YCMjfjf
 (company-tng-configure-default)
 
 ;; o and O from a commented line will not continue comments
