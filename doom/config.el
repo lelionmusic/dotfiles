@@ -9,7 +9,7 @@
 ;; Theme
 ;; (setq doom-theme 'doom-nord)
 
-;; Tab and go: make it behave more like YCMjfjf
+;; Tab and go: make it behave more like YCM
 (company-tng-configure-default)
 
 ;; o and O from a commented line will not continue comments
