@@ -7,8 +7,8 @@
 ;
 ;=====================================================
 [colors]
-background = #000a0b0b
-; background = #ffffff55
+; background = #000a0b0b
+background = #282C35
 background-alt = #eeeeee55
 foreground = #fff
 foreground-alt = #50ffffff

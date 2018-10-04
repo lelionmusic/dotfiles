@@ -1,11 +1,12 @@
 # Gaps
-set $ing  8
+set $ing  0
 set $oug  0
 
+# Modifiers
 set $mod Mod1
-# set $mod Mod4
 set $win Mod4
 
+# Read colors from Xresources   <color> <fallback>
 set_from_resource $darkred     	color1  #000000
 set_from_resource $red         	color9  #000000
 set_from_resource $darkgreen   	color2  #000000
@@ -22,23 +23,28 @@ set_from_resource $darkwhite	color7  #000000
 set_from_resource $white		color15	#000000
 
 # Window Border Thickness
-set $bordersize 0
+set $bordersize 2
+
 # Bar Background Text
 set $background #000000ff
+
 # Bar Warning Colour
 set $warning    #e84f4f
-# Active Window Colour
-set $border    	#ffffff30
 # Bar Text Colour
 set $bartext    #eeeeee
 # Active Workspace Color
 set $barfoc     #456056
-# Unfocused Window/Workspace Colour
-set $ufocus     #000000
+
+# Active Window Colour
+set $border    	#282C35
 # Window Decoraction Text Colour
 set $dectext #ffffff
+
+# Unfocused Window/Workspace Colour
+set $ufocus     #151C25
 # Unfocused window text color
 set $unfocdectext #666666
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -71,7 +77,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+e layout stacking
+# bindsym $mod+e layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+s layout toggle split
 
