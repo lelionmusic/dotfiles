@@ -133,6 +133,8 @@ alias weather='curl wttr.in '
 fpath=($fpath "/home/lelion/.zfunctions")
 
 if [[ -z ${NAME+x} ]]; then
+    
+else
     # WSL X Server
     export DISPLAY=:0.0
 

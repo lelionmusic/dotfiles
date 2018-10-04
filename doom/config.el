@@ -5,6 +5,10 @@
                            :slant 'italic'
                            ;; :weight 'bold'
                            :size 14))
+(setq doom-big-font (font-spec :family "Iosevka Term"
+                           :slant 'italic'
+                           ;; :weight 'bold'
+                           :size 24))
 
 ;; Theme
 ;; (setq doom-theme 'doom-nord)

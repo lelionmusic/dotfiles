@@ -44,7 +44,7 @@
       ;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
       ;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       window-select     ; visually switch windows
+      ;window-select     ; visually switch windows
 
        :editor
       ;(format +onsave)  ; automated prettiness
@@ -74,7 +74,7 @@
       ;password-store    ; password manager for nerds
       ;pdf               ; pdf enhancements
       ;prodigy           ; FIXME managing external services & code builders
-      ;rgb               ; creating color strings
+      rgb               ; creating color strings
       ;tmux              ; an API for interacting with tmux
       ;upload            ; map local to remote projects via ssh/ftp
       ;wakatime
