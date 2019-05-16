@@ -141,3 +141,9 @@ else
     # Don't set nice on background processes (gives error on WSL)
     unsetopt BG_NICE
 fi
+
+export DHIS2_HOME=home/lelion/Documents/h18/in5320/dhis2_home
+
+export PATH=$PATH:~/.local/bin
+
+alias bochsdbg="bochs -f $HOME/.bochsrc_debug"

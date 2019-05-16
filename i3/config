@@ -3,7 +3,7 @@ set $ing  0
 set $oug  0
 
 # Modifiers
-set $mod Mod1
+set $mod Mod4
 set $win Mod4
 
 # Read colors from Xresources   <color> <fallback>
@@ -23,7 +23,8 @@ set_from_resource $darkwhite	color7  #000000
 set_from_resource $white		color15	#000000
 
 # Window Border Thickness
-set $bordersize 2
+set $bordersize 1
+default_border pixel 1
 
 # Bar Background Text
 set $background #000000ff
@@ -36,12 +37,14 @@ set $bartext    #eeeeee
 set $barfoc     #456056
 
 # Active Window Colour
-set $border    	#282C35
+#set $border    	#282C35
+set $border    	#1b2229
 # Window Decoraction Text Colour
 set $dectext #ffffff
 
 # Unfocused Window/Workspace Colour
-set $ufocus     #151C25
+# set $ufocus     #151C25
+set $ufocus     #1b2229
 # Unfocused window text color
 set $unfocdectext #666666
 
@@ -62,9 +65,6 @@ floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# alt f4? idk
-bindsym $mod+F4 exec xdotool getwindowfocus windowkill
-
 # arch blur i3lock
 bindsym ctrl+$mod+L exec ~/dotfiles/scripts/screenlock.sh
 
@@ -74,7 +74,7 @@ bindsym $mod+d split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+e layout stacking
@@ -88,10 +88,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+m focus parent
 
 # focus the child container
-bindsym $mod+c focus child
+bindsym $mod+n focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -118,24 +118,24 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # border on, see where focus is
-bindsym $win+i exec i3-msg border pixel 1
-bindsym --release $win+i exec i3-msg border pixel $bordersize
+# bindsym $win+i exec i3-msg border pixel 1
+# bindsym --release $win+i exec i3-msg border pixel $bordersize
 
 # change focus
-bindsym $mod+h exec i3-msg border pixel 1; focus left
-bindsym $mod+j exec i3-msg border pixel 1; focus down
-bindsym $mod+k exec i3-msg border pixel 1; focus up
-bindsym $mod+l exec i3-msg border pixel 1; focus right
-bindsym --release $mod+h exec i3-msg border pixel $bordersize
-bindsym --release $mod+j exec i3-msg border pixel $bordersize
-bindsym --release $mod+k exec i3-msg border pixel $bordersize
-bindsym --release $mod+l exec i3-msg border pixel $bordersize
+bindsym $mod+h exec i3-msg focus left
+bindsym $mod+j exec i3-msg focus down
+bindsym $mod+k exec i3-msg focus up
+bindsym $mod+l exec i3-msg focus right
+bindsym --release $mod+h exec i3-msg
+bindsym --release $mod+j exec i3-msg
+bindsym --release $mod+k exec i3-msg
+bindsym --release $mod+l exec i3-msg
 
 # move focused window
-bindsym $mod+Shift+h exec i3-msg border pixel 1; move left
-bindsym $mod+Shift+j exec i3-msg border pixel 1; move down
-bindsym $mod+Shift+k exec i3-msg border pixel 1; move up
-bindsym $mod+Shift+l exec i3-msg border pixel 1; move right
+bindsym $mod+Shift+h exec i3-msg border pixel 2; move left
+bindsym $mod+Shift+j exec i3-msg border pixel 2; move down
+bindsym $mod+Shift+k exec i3-msg border pixel 2; move up
+bindsym $mod+Shift+l exec i3-msg border pixel 2; move right
 bindsym --release $mod+Shift+h exec i3-msg border pixel $bordersize
 bindsym --release $mod+Shift+j exec i3-msg border pixel $bordersize
 bindsym --release $mod+Shift+k exec i3-msg border pixel $bordersize
@@ -168,7 +168,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+biNdsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -181,33 +181,32 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #######################
 
 # terminal
-bindsym $win+x exec xfce4-terminal
-bindsym $mod+enter exec xfce4-terminal
+# bindsym $mod+x exec xfce4-terminal
+bindsym $mod+Return exec xfce4-terminal
 # rofi
 bindsym $win+f exec ~/dotfiles/scripts/rofi.sh
 # firefox
-bindsym $win+w exec firefox
+# bindsym $win+w exec firefox
 # file explorer
 bindsym $win+e exec nemo & #--no-desktop
 # emacs
-bindsym $win+a exec em
+bindsym $win+a exec emacs
 
 ######################
 #                    #
 #     Aesthetics     #
-#  					 #
+#                    #
 ######################
 
 # Border style
 for_window [class="^.*"] border pixel $bordersize
-hide_edge_borders smart
+hide_edge_borders both
 
 # Gaps
 gaps inner $ing
 gaps outer $oug 
 # No gaps on workspaces with only one window
 smart_gaps on
-workspace 1 gaps inner 0 
 
 # class                 border   backgr.  text           indicator
 client.focused          $border  $border  $dectext       $border
@@ -249,9 +248,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-
 # Wallpaper
-exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpapers/active/floweronrock.png
+exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpapers/active/space.jpg
 
 # Behavior
 workspace_auto_back_and_forth yes
