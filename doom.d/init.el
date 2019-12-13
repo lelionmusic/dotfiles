@@ -33,7 +33,7 @@
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies
-       (format +onsave)  ; automated prettiness
+       format            ; automated prettiness
        file-templates    ; auto-snippets for empty files
        fold
        multiple-cursors  ; editing in many places at once

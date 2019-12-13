@@ -4,7 +4,7 @@
 (setq doom-font (font-spec :family "Iosevka Term"
                            ;; :slant 'italic'
                            ;; :weight 'bold'
-                           :Size 14))
+                           :size 14))
 (setq doom-big-font (font-spec :family "Iosevka Term"
                            ;; :slant 'italic'
                            ;; :weight 'bold'
