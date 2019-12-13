@@ -28,9 +28,9 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-modeline     ; a snazzy Atom-inspired mode-line
-       doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
-      ;fci               ; a `fill-column' indicator
+      ;; fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
       ;modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
@@ -41,13 +41,13 @@
         +defaults)       ; default popup rules
       ;pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
-      ;unicode           ; extended unicode support for various languages
+      unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
       ;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
       ;window-select     ; visually switch windows
 
        :editor
-      ;(format +onsave)  ; automated prettiness
+      (format +onsave)  ; automated prettiness
        multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
@@ -72,7 +72,7 @@
       ;make              ; run make tasks from Emacs
        magit             ; a git porcelain for Emacs
       ;password-store    ; password manager for nerds
-      ;pdf               ; pdf enhancements
+      pdf               ; pdf enhancements
       ;prodigy           ; FIXME managing external services & code builders
       rgb               ; creating color strings
       ;tmux              ; an API for interacting with tmux
@@ -137,7 +137,7 @@
       ;irc               ; how neckbeards socialize
       ;(rss +org)        ; emacs as an RSS reader
       ;twitter           ; twitter client https://twitter.com/vnought
-      ;(write            ; emacs as a word processor (latex + org + markdown)
+      (write)            ; emacs as a word processor (latex + org + markdown)
       ; +wordnut         ; wordnet (wn) search
       ; +langtool)       ; a proofreader (grammar/style check) for Emacs
 

@@ -1,17 +1,17 @@
 ;;; private/default/config.el -*- lexical-binding: t; -*-
 
 ;; Font
-(setq doom-font (font-spec :family "Iosevka Term"
-                           :slant 'italic'
-                           ;; :weight 'bold'
+(setq doom-font (font-spec :family "Iosevka"
+                           ;; :slant 'italic'
+                           :weight 'Semibold'
                            :size 14))
-(setq doom-big-font (font-spec :family "Iosevka Term"
-                           :slant 'italic'
+(setq doom-big-font (font-spec :family "Iosevka"
+                           ;; :slant 'italic'
                            ;; :weight 'bold'
                            :size 24))
 
 ;; Theme
-;; (setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-city-lights)
 
 ;; Tab and go: make it behave more like YCM
 (company-tng-configure-default)
@@ -41,3 +41,18 @@
 
 ;; TODO (global-set-key [s-return] 'spacemacs/evil-insert-line-below)
 ;;      (global-set-key [C-return] 'spacemacs/evil-insert-line-above)
+
+;; Org-mode
+(setq org-ellipsis " ▼ "
+      org-directory (expand-file-name "~/org/")
+      ;; org-agenda-files (list org-directory)
+      org-hide-emphasis-markers t
+      org-bullets-bullet-list '("◆" "◈" "◇")
+      )                         
+
+;; didn't work
+;; (defun org-summary-todo (n-done n-not-done)
+;;   "Switch entry to DONE when all subentries are done, to TODO otherwise."
+;;   (let (org-log-done org-log-states)   ; turn off logging
+;;     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
