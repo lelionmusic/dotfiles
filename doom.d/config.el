@@ -4,7 +4,7 @@
 (setq doom-font (font-spec :family "Iosevka Term"
                            ;; :slant 'italic'
                            ;; :weight 'bold'
-                           :size 14))
+                           :Size 14))
 (setq doom-big-font (font-spec :family "Iosevka Term"
                            ;; :slant 'italic'
                            ;; :weight 'bold'
@@ -14,15 +14,16 @@
 (setq doom-theme 'doom-city-lights)
 
 ;; Tab and go: make it behave more like YCM
-(company-tng-configure-default)
+;; (company-tng-configure-default)
 
 ;; o and O from a commented line will not continue comments
 (setq +evil-want-o/O-to-continue-comments nil)
 
 ;; Ivy regexp builder splitting by spaces
-(setq ivy-re-builders-alist '((t . ivy--regex-plus)))
+(setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
 ;; Other choices: ivy--regex-ignore-order
 ;;                ivy--regex-fuzzy
+;;                ivy--regex-plus
 
 ;; Keybindings
 (map! :en "C-h" #'evil-window-left
@@ -38,9 +39,6 @@
         "C-h" #'ivy-backward-kill-word
         "RET" #'ivy-alt-done)
       )
-
-;; TODO
-;; evil-comment
 
 ;; TODO (global-set-key [s-return] 'spacemacs/evil-insert-line-below)
 ;;      (global-set-key [C-return] 'spacemacs/evil-insert-line-above)
