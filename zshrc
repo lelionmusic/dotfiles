@@ -123,7 +123,7 @@ alias vimrc='vim ~/dotfiles/vimrc'
 alias jc='javac *.java'
 alias aupdate='sudo pacnanny -Syu'
 alias t='tree'
-alias checkports='sudo nmap -sT -O localhost'
+alias checkports='echo "sudo nmap -sT -O localhost" && sudo nmap -sT -O localhost'
 alias pbar='~/dotfiles/polybar/launch.sh'
 alias p=python
 alias sxp="source ~/dotfiles/xprofile"
@@ -141,3 +141,10 @@ else
     # Don't set nice on background processes (gives error on WSL)
     unsetopt BG_NICE
 fi
+
+export DHIS2_HOME=home/lelion/Documents/h18/in5320/dhis2_home
+
+export PATH=$PATH:~/.local/bin
+
+alias bochsdbg="bochs -f $HOME/.bochsrc_debug"
+export PATH=$PATH:/home/lelion/.emacs.d/bin

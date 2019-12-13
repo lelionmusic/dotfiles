@@ -1,11 +1,11 @@
 ;;; private/default/config.el -*- lexical-binding: t; -*-
 
 ;; Font
-(setq doom-font (font-spec :family "Iosevka"
+(setq doom-font (font-spec :family "Iosevka Term"
                            ;; :slant 'italic'
-                           :weight 'Semibold'
+                           ;; :weight 'bold'
                            :size 14))
-(setq doom-big-font (font-spec :family "Iosevka"
+(setq doom-big-font (font-spec :family "Iosevka Term"
                            ;; :slant 'italic'
                            ;; :weight 'bold'
                            :size 24))
@@ -29,6 +29,9 @@
       :en "C-j" #'evil-window-down
       :en "C-k" #'evil-window-up
       :en "C-l" #'evil-window-right
+      :en "M-s" #'save-buffer
+      :en "M-w" #'delete-window
+      :en "M-a" #'mark-whole-buffer
 
       (:after ivy
         :map ivy-minibuffer-map
@@ -56,3 +59,4 @@
 ;;   (let (org-log-done org-log-states)   ; turn off logging
 ;;     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 ;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+;;
