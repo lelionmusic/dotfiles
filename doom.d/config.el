@@ -4,14 +4,15 @@
 (setq doom-font (font-spec :family "Iosevka Term"
                            ;; :slant 'italic'
                            ;; :weight 'bold'
-                           :size 14))
+                           :size 16))
 (setq doom-big-font (font-spec :family "Iosevka Term"
                            ;; :slant 'italic'
                            ;; :weight 'bold'
                            :size 24))
 
 ;; Theme
-(setq doom-theme 'doom-city-lights)
+;; (setq doom-theme 'doom-city-lights)
+(setq doom-theme 'doom-moonlight)
 
 ;; Tab and go: make it behave more like YCM
 ;; (company-tng-configure-default)
@@ -20,7 +21,7 @@
 (setq +evil-want-o/O-to-continue-comments nil)
 
 ;; Ivy regexp builder splitting by spaces
-(setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+(setq ivy-re-builders-alist '((t . ivy--regex-plus)))
 ;; Other choices: ivy--regex-ignore-order
 ;;                ivy--regex-fuzzy
 ;;                ivy--regex-plus

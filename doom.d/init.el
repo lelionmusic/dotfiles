@@ -26,10 +26,11 @@
         +defaults)       ; default popup rules
        ;;(pretty-code      ; replace bits of code with pretty symbols
        ;; +iosevka)
-       tabs
+       ;; tabs
        unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        workspaces
+
 
        :editor
        (evil +everywhere); come to the dark side, we have cookies

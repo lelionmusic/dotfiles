@@ -113,7 +113,10 @@ export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode - cyan
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias l="ls -ht --group-directories-first -B --hide='*.class'"
+if [ -x "$(command -v exa)" ]; then
+  alias l="exa"
+else alias l="ls -ht --group-directories-first -B --hide='*.class'"
+fi
 alias la="ls -hlta --group-directories-first"
 alias ll="ls -lht --group-directories-first -B --hide='*.class'"
 alias pac='sudo pacman -S '
@@ -127,14 +130,11 @@ alias checkports='echo "sudo nmap -sT -O localhost" && sudo nmap -sT -O localhos
 alias pbar='~/dotfiles/polybar/launch.sh'
 alias p=python
 alias sxp="source ~/dotfiles/xprofile"
-alias ~3190='cd ~/Documents/v18/inf3190/'
 alias weather='curl wttr.in '
 
 fpath=($fpath "/home/lelion/.zfunctions")
 
-if [[ -z ${NAME+x} ]]; then
-    
-else
+if ! [[ -z ${NAME+x} ]]; then
     # WSL X Server
     export DISPLAY=:0.0
 
@@ -148,3 +148,5 @@ export PATH=$PATH:~/.local/bin
 
 alias bochsdbg="bochs -f $HOME/.bochsrc_debug"
 export PATH=$PATH:/home/lelion/.emacs.d/bin
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
