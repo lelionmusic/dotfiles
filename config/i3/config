@@ -238,7 +238,7 @@ bindsym $mod+g mode "Gaps"
 
 exec --no-startup-id compton &
 exec_always --no-startup-id ibus-daemon -xdr &
-exec_always --no-startup-id ~/dotfiles/polybar/launch.sh &
+exec_always --no-startup-id ~/dotfiles/config/polybar/launch.sh &
 exec --no-startup-id xfsettingsd --sm-client-disable &
 exec --no-startup-id xfce4-power-manager --sm-client-disable &
 exec --no-startup-id xfce4-volumed-pulse --sm-client-disable &

@@ -1,30 +1,37 @@
 ;;; private/default/config.el -*- lexical-binding: t; -*-
 
 ;; Font
-(setq doom-font (font-spec :family "Iosevka Term"
-                           ;; :slant 'italic'
-                           ;; :weight 'bold'
-                           :size 16))
-(setq doom-big-font (font-spec :family "Iosevka Term"
-                           ;; :slant 'italic'
-                           ;; :weight 'bold'
-                           :size 24))
+(let ((main-font (font-spec :family "PragmataPro" :size 14))
+      (fallback-font1 (font-spec :family "Iosevka" :size 14))
+      (fallback-font2 (font-spec :family "Iosevka Term" :size 14)))
+  (setq doom-font     (if (find-font main-font)
+                          main-font
+                        (if (find-font fallback-font1)
+                            fallback-font1
+                          fallback-font2))))
 
-;; Theme
-;; (setq doom-theme 'doom-city-lights)
-(setq doom-theme 'doom-moonlight)
+(setq user-full-name    "Geir Olav Alsvik"
+      user-mail-address "goa95@protonmail.com"
 
-;; Tab and go: make it behave more like YCM
-;; (company-tng-configure-default)
+      ;; Theme
+      doom-theme 'doom-moonlight
 
-;; o and O from a commented line will not continue comments
-(setq +evil-want-o/O-to-continue-comments nil)
+      ;; o and O from a commented line will not continue comments
+      +evil-want-o/O-to-continue-comments nil
+      ivy-re-builders-alist '((t . ivy--regex-plus))
 
-;; Ivy regexp builder splitting by spaces
-(setq ivy-re-builders-alist '((t . ivy--regex-plus)))
-;; Other choices: ivy--regex-ignore-order
-;;                ivy--regex-fuzzy
-;;                ivy--regex-plus
+      lsp-signature-auto-activate nil
+      lsp-enable-symbol-highlighting nil
+
+      ;; Use C-n to trigger on-demand completion list
+      company-idle-delay nil
+      company-box-doc-delay nil
+
+      ;; Org-mode
+      org-ellipsis " ▼ "
+      org-directory (expand-file-name "~/org/")
+      org-hide-emphasis-markers t
+      org-bullets-bullet-list '("◆" "◈" "◇"))
 
 ;; Keybindings
 (map! :en "C-h" #'evil-window-left
@@ -34,28 +41,17 @@
       :en "M-s" #'save-buffer
       :en "M-w" #'delete-window
       :en "M-a" #'mark-whole-buffer
+      :i  "C-n" #'+company/complete
 
       (:after ivy
         :map ivy-minibuffer-map
         "C-h" #'ivy-backward-kill-word
-        "RET" #'ivy-alt-done)
-      )
+        "RET" #'ivy-alt-done))
 
-;; TODO (global-set-key [s-return] 'spacemacs/evil-insert-line-below)
-;;      (global-set-key [C-return] 'spacemacs/evil-insert-line-above)
 
-;; Org-mode
-(setq org-ellipsis " ▼ "
-      org-directory (expand-file-name "~/org/")
-      ;; org-agenda-files (list org-directory)
-      org-hide-emphasis-markers t
-      org-bullets-bullet-list '("◆" "◈" "◇")
-      )                         
-
-;; didn't work
+;; didn't work TODO
 ;; (defun org-summary-todo (n-done n-not-done)
 ;;   "Switch entry to DONE when all subentries are done, to TODO otherwise."
 ;;   (let (org-log-done org-log-states)   ; turn off logging
 ;;     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 ;; (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-;;

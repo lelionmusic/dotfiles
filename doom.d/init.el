@@ -14,10 +14,9 @@
        :ui
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       modeline          ; a snazzy Atom-inspired mode-line
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        modeline          ; snazzy, Atom-inspired modeline, plus API
-       nav-flash         ; blink the current line after jumping
+       ;nav-flash         ; blink the current line after jumping
        indent-guides
        ophints           ; highlight the region an action operates on
        treemacs
@@ -102,6 +101,9 @@
       (eval +overlay)
       pdf
       rgb
+
+      :email
+      mu4e
 
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
